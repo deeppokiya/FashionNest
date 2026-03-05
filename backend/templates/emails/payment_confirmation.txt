@@ -1,0 +1,58 @@
+FashionNest - Payment Confirmation
+
+Dear {{ user.first_name }},
+
+✅ PAYMENT SUCCESSFUL!
+
+Your payment has been processed successfully. Thank you for your purchase!
+
+Payment Details:
+- Transaction ID: {{ order.transaction_id|default:"N/A" }}
+- Payment Method: {{ order.payment_method|title }}
+- Payment Status: {{ order.payment_status|title }}
+- Payment Date: {{ order.updated_at|date:"F j, Y H:i" }}
+
+Order Summary:
+- Order Number: {{ order.order_number }}
+- Order Date: {{ order.created_at|date:"F j, Y" }}
+- Total Amount Paid: ₹{{ order.total_amount }}
+- Items: {{ order.items.count }} item(s)
+
+What's Next?
+- We'll process your order and prepare it for shipping
+- You'll receive a shipping confirmation email with tracking information
+- Your order will be delivered to your shipping address
+
+If you have any questions about your payment or order, please don't hesitate to contact our customer service team.
+
+Thank you for choosing FashionNest!
+
+© 2024 FashionNest. All rights reserved.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

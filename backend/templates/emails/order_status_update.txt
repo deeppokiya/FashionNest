@@ -1,0 +1,33 @@
+FashionNest - Order Status Update
+
+Dear {{ user.first_name }},
+
+Your order status has been updated!
+
+Order Information:
+- Order Number: {{ order.order_number }}
+- New Status: {{ status|title }}
+- Updated Date: {{ order.updated_at|date:"F j, Y H:i" }}
+
+Order Details:
+- Order Date: {{ order.created_at|date:"F j, Y" }}
+- Total Amount: ₹{{ order.total_amount }}
+- Payment Status: {{ order.payment_status|title }}
+
+{% if status == 'shipped' %}
+Your order has been shipped! You will receive tracking information shortly.
+{% elif status == 'delivered' %}
+Your order has been delivered! We hope you love your new items.
+{% elif status == 'cancelled' %}
+Your order has been cancelled. If you have any questions, please contact our customer service.
+{% else %}
+We're working on processing your order. You'll receive another update soon.
+{% endif %}
+
+We'll keep you updated on any further changes to your order status.
+
+If you have any questions about your order, please don't hesitate to contact our customer service team.
+
+Thank you for choosing FashionNest!
+
+© 2024 FashionNest. All rights reserved. 

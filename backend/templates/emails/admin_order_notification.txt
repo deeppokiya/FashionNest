@@ -1,0 +1,39 @@
+FashionNest Admin - New Order Notification
+
+A new order has been placed and requires your attention.
+
+Order Details:
+- Order Number: {{ order.order_number }}
+- Order Date: {{ order.created_at|date:"F j, Y H:i" }}
+- Status: {{ order.status|title }}
+- Payment Status: {{ order.payment_status|title }}
+- Payment Method: {{ order.payment_method|title }}
+
+Items Ordered:
+{% for item in items %}
+- {{ item.product.name }}
+  Quantity: {{ item.quantity }}
+  Price: ₹{{ item.price }}
+  {% if item.size %}Size: {{ item.size }}{% endif %}
+  {% if item.color %}Color: {{ item.color }}{% endif %}
+{% endfor %}
+
+Order Summary:
+- Subtotal: ₹{{ order.subtotal }}
+- Tax: ₹{{ order.tax }}
+- Shipping: ₹{{ order.shipping_cost }}
+- Total: ₹{{ order.total_amount }}
+
+Customer Information:
+- Name: {{ user.first_name }} {{ user.last_name }}
+- Email: {{ user.email }}
+- Phone: {{ order.shipping_phone }}
+
+Shipping Address:
+{{ order.shipping_address }}
+{{ order.shipping_city }}, {{ order.shipping_state }} {{ order.shipping_zip_code }}
+{{ order.shipping_country }}
+
+Action Required: Please process this order and update the status in the admin panel.
+
+Admin Panel: http://localhost:8000/admin/orders/order/{{ order.id }}/change/ 

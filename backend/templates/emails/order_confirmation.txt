@@ -1,0 +1,43 @@
+FashionNest - Order Received
+
+Dear {{ user.first_name }},
+
+Thank you for your order! We're excited to confirm that we've received your order and it's being processed.
+
+Note: This email confirms that we've received your order. You'll receive a separate payment confirmation email once your payment is successfully processed.
+
+Order Details:
+Order Number: {{ order.order_number }}
+Order Date: {{ order.created_at|date:"F j, Y" }}
+Status: {{ order.status|title }}
+Payment Status: {{ order.payment_status|title }}
+
+Items Ordered:
+{% for item in items %}
+- {{ item.product.name }}
+  Quantity: {{ item.quantity }}
+  Price: ₹{{ item.price }}
+  {% if item.size %}Size: {{ item.size }}{% endif %}
+  {% if item.color %}Color: {{ item.color }}{% endif %}
+
+{% endfor %}
+
+Order Summary:
+Subtotal: ₹{{ order.subtotal }}
+Tax: ₹{{ order.tax }}
+Shipping: ₹{{ order.shipping_cost }}
+Total: ₹{{ order.total_amount }}
+
+Shipping Address:
+{{ order.shipping_address }}
+{{ order.shipping_city }}, {{ order.shipping_state }} {{ order.shipping_zip_code }}
+{{ order.shipping_country }}
+Phone: {{ order.shipping_phone }}
+
+We'll send you a payment confirmation email once your payment is successfully processed, and another email when your order ships with tracking information.
+
+If you have any questions about your order, please don't hesitate to contact our customer service team.
+
+Thank you for choosing FashionNest!
+
+© 2024 FashionNest. All rights reserved. 

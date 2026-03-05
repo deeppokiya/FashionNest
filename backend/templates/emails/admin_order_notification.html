@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>New Order Notification - FashionNest</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #dc3545;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .order-details {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: right;
+            margin-top: 20px;
+        }
+        .customer-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>FashionNest Admin</h1>
+        <h2>New Order Received</h2>
+    </div>
+    
+    <p>A new order has been placed and requires your attention.</p>
+    
+    <div class="order-details">
+        <h3>Order Details</h3>
+        <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+        <p><strong>Order Date:</strong> {{ order.created_at|date:"F j, Y H:i" }}</p>
+        <p><strong>Status:</strong> {{ order.status|title }}</p>
+        <p><strong>Payment Status:</strong> {{ order.payment_status|title }}</p>
+        <p><strong>Payment Method:</strong> {{ order.payment_method|title }}</p>
+        
+        <h4>Items Ordered:</h4>
+        {% for item in items %}
+        <div class="item">
+            <p><strong>{{ item.product.name }}</strong></p>
+            <p>Quantity: {{ item.quantity }}</p>
+            <p>Price: ₹{{ item.price }}</p>
+            {% if item.size %}<p>Size: {{ item.size }}</p>{% endif %}
+            {% if item.color %}<p>Color: {{ item.color }}</p>{% endif %}
+        </div>
+        {% endfor %}
+        
+        <div class="total">
+            <p>Subtotal: ₹{{ order.subtotal }}</p>
+            <p>Tax: ₹{{ order.tax }}</p>
+            <p>Shipping: ₹{{ order.shipping_cost }}</p>
+            <p><strong>Total: ₹{{ order.total_amount }}</strong></p>
+        </div>
+    </div>
+    
+    <div class="customer-info">
+        <h3>Customer Information</h3>
+        <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ order.shipping_phone }}</p>
+    </div>
+    
+    <div class="order-details">
+        <h3>Shipping Address</h3>
+        <p>{{ order.shipping_address }}</p>
+        <p>{{ order.shipping_city }}, {{ order.shipping_state }} {{ order.shipping_zip_code }}</p>
+        <p>{{ order.shipping_country }}</p>
+    </div>
+    
+    <p><strong>Action Required:</strong> Please process this order and update the status in the admin panel.</p>
+    
+    <p>Admin Panel: <a href="http://localhost:8000/admin/orders/order/{{ order.id }}/change/">View Order</a></p>
+</body>
+</html> 

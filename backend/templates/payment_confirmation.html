@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation - FashionNest</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .success-icon {
+            color: #28a745;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .order-details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .order-details h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #6c757d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="success-icon">✅</div>
+            <h1>Payment Confirmed!</h1>
+            <p>Thank you for your payment. Your order has been successfully processed.</p>
+        </div>
+
+        <div class="order-details">
+            <h3>Order Details</h3>
+            <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+            <p><strong>Order Date:</strong> {{ order.created_at|date:"F j, Y" }}</p>
+            <p><strong>Payment Method:</strong> {{ payment.payment_method|title }}</p>
+            <p><strong>Transaction ID:</strong> {{ payment.transaction_id }}</p>
+            <p><strong>Amount Paid:</strong> ₹{{ order.total_amount }}</p>
+            <p><strong>Status:</strong> 
+                <span class="status-badge status-completed">{{ order.payment_status|title }}</span>
+            </p>
+        </div>
+
+        <div class="order-details">
+            <h3>What's Next?</h3>
+            <p>✅ Your payment has been confirmed</p>
+            <p>📧 You'll receive a payment confirmation email shortly</p>
+            <p>📦 Your order will be automatically delivered in 5 minutes</p>
+            <p>📧 You'll receive a delivery confirmation email</p>
+            <p>✍️ You'll be able to review your products after delivery</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/orders" class="btn">View My Orders</a>
+            <a href="/" class="btn btn-secondary">Continue Shopping</a>
+        </div>
+
+        <div class="footer">
+            <p>If you have any questions, please contact our customer service team.</p>
+            <p>Thank you for choosing FashionNest!</p>
+            <p>© 2024 FashionNest. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Auto-redirect to orders page after 10 seconds
+        setTimeout(function() {
+            window.location.href = '/orders';
+        }, 10000);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

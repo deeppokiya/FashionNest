@@ -1,0 +1,40 @@
+FashionNest - Review Your Recent Purchase
+
+Hi {{ user.first_name|default:user.username }},
+
+We hope you're enjoying your recent purchase from FashionNest! Your order {{ order.order_number }} was delivered on {{ order.actual_delivery|date:"F j, Y" }}.
+
+We'd love to hear about your experience with the following products:
+
+{% for product in unreviewed_products %}
+- {{ product.name }} ({{ product.brand }})
+  Category: {{ product.category.name }}
+  Review link: http://localhost:3000/product/{{ product.slug }}
+
+{% endfor %}
+
+Your reviews help other customers make informed decisions and help us improve our products and service.
+
+Thank you for choosing FashionNest!
+
+Best regards,
+The FashionNest Team
+
+---
+This email was sent to {{ user.email }}
+If you have any questions, please contact our support team.
+© 2024 FashionNest. All rights reserved.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
